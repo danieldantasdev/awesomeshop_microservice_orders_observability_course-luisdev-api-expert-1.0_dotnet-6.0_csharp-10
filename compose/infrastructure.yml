@@ -1,0 +1,91 @@
+version: "3.7"
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: unless-stopped
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=root
+    #   - MONGO_INITDB_ROOT_PASSWORD=secret
+    networks:
+      - imersaoexpert
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+
+  rabbitmq:
+    image: masstransit/rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - imersaoexpert
+
+  #elasticsearch:
+  #  image: docker.elastic.co/elasticsearch/elasticsearch:8.1.2
+  #  ports:
+  #    - 9200:9200
+  #  environment:
+  #    - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+  #    - "network.host="
+  #    - "transport.host=127.0.0.1"
+  #    - "http.host=0.0.0.0"
+  #    - "cluster.routing.allocation.disk.threshold_enabled=false"
+  #    - "discovery.type=single-node"
+  #    - ELASTICSEARCH_USERNAME=admin
+  #    - ELASTICSEARCH_PASSWORD=elastic
+  #    - "xpack.security.authc.anonymous.roles=remote_monitoring_collector"
+  #    - "xpack.security.enabled=true"
+  #    - "xpack.security.authc.token.enabled=true"
+  #    - "xpack.security.authc.api_key.enabled=true"
+  #    - "logger.org.elasticsearch=warn"
+  #  volumes:
+  #    - ./.elastic/elasticsearch:/usr/share/elasticsearch/data
+
+  #kibana:
+  #  image: docker.elastic.co/kibana/kibana:8.1.2
+  #  ports:
+  #    - 5601:5601
+  #  environment:
+  #    ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+  #    ELASTICSEARCH_USERNAME: "admin"
+  #    ELASTICSEARCH_PASSWORD: "elastic"
+  #  depends_on:
+  #    - elasticsearch
+
+  #apm:
+  #  image: docker.elastic.co/apm/apm-server:8.1.2
+  #  ports:
+  #    - 8200:8200
+  #  command: >
+  #    apm-server -e
+  #      -E apm-server.rum.enabled=true
+  #      -E logging.level=debug
+  #      -E setup.kibana.host=http://kibana:5601
+  #      -E setup.template.settings.index.number_of_replicas=0
+  #      -E apm-server.kibana.enabled=true
+  #      -E apm-server.kibana.host=http://kibana:5601
+  #      -E apm-server.kibana.protocol=http
+  #      -E apm-server.kibana.username=admin
+  #      -E apm-server.kibana.password=elastic
+  #      -E apm-server.kibana.ssl.enabled=false
+  #      -E output.elasticsearch.hosts=http://elasticsearch:9200
+  #      -E output.elasticsearch.protocol=http
+  #      -E output.elasticsearch.username=admin
+  #      -E output.elasticsearch.password=elastic
+  #      -E output.elasticsearch.ssl.enabled=false
+  #  depends_on:
+  #    - kibana
+
+networks:
+  imersaoexpert:
+    name: imersaoexpert
+  es-net:
+    driver: bridge
+
+volumes:
+  mongo:
+    driver: local
+  

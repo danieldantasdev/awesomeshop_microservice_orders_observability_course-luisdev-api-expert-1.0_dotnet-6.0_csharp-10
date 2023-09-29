@@ -1,0 +1,39 @@
+{
+    "customer": {
+      "id": "91b5841e-75f6-46a7-a9ea-1069cdfd8d89",
+      "fullName": "LuisDev",
+      "email": "famiw44269@nhmty.com"
+    },
+    "items": [
+      {
+        "productId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "quantity": 2,
+        "price": 15
+      },
+      {
+        "productId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "quantity": 10,
+        "price": 10
+      }
+    ],
+    "deliveryAddress": {
+      "street": "rua",
+      "number": "1234",
+      "city": "sp",
+      "state": "sp",
+      "zipCode": "12345678"
+    },
+    "paymentAddress": {
+      "street": "rua",
+      "number": "1234",
+      "city": "sp",
+      "state": "sp",
+      "zipCode": "12345678"
+    },
+    "paymentInfo": {
+      "cardNumber": "123456789",
+      "fullName": "LUISDEV",
+      "expirationDate": "01/21",
+      "cvv": "123"
+    }
+  }

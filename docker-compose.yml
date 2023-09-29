@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  awesomeshop.services.orders.api:
+    image: ${DOCKER_REGISTRY-}awesomeshopservicesorders
+    build:
+      context: .
+      dockerfile: src/AwesomeShop.Services.Orders.API/Dockerfile
